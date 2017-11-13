@@ -97,9 +97,7 @@ game.appendChild(rock);
 
  window.requestAnimationFrame(moveRock)
 
- ROCKS.push(rock)
 
- return rock;
   //  let rock=getElementByClassName('rock');
 
     // implement me!
@@ -127,7 +125,7 @@ game.appendChild(rock);
   ROCKS.push(rock)
 
   // Finally, return the rock element you've created
-  return rock
+  return rock;
 }
 
 /**
