@@ -29,14 +29,16 @@ function checkCollision(rock) {
     const dodgerLeftEdge = positionToInteger(DODGER.style.left)
 
     // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
-    const dodgerRightEdge = 0;
+    const dodgerRightEdge = dodgerLeftEdge+40;
 
     const rockLeftEdge = positionToInteger(rock.style.left)
 
     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
-    const rockRightEdge = 0;
+    const rockRightEdge = rockLeftEdge + 20;
 
-    if (false /**
+    if ((rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge) ||
+        (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) ||
+        (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge)  /**
                * Think about it -- what's happening here?
                * There's been a collision if one of three things is true:
                * 1. The rock's left edge is < the DODGER's left edge,
@@ -52,7 +54,7 @@ function checkCollision(rock) {
 }
 
 function createRock(x) {
-  let game=document.getElementById('game');
+  //let game=document.getElementById('game');
   const rock = document.createElement('div')
 game.appendChild(rock);
   rock.className = 'rock'
@@ -62,7 +64,8 @@ game.appendChild(rock);
   // Hmmm, why would we have used `var` here?
   var top = 0
 
-  rock.style.top = top
+  rock.style.top = top;
+   GAME.appendChild(rock);
   /*rock.style="top:" + (top+22) + "px";
   setInterval(function() {
    top.style="top:" + (top+2) + "px";
@@ -79,7 +82,25 @@ game.appendChild(rock);
    * seems like a good pace.)
    */
   function moveRock() {
-    let rock=getElementByClassName('rock');
+    rock.style.top = `${top += 2}px`;
+
+   if (checkCollision(rock)) {
+     return endGame();
+   }
+
+   if (top < GAME_HEIGHT) {
+     window.requestAnimationFrame(moveRock)
+   } else {
+     rock.remove();
+   }
+ }
+
+ window.requestAnimationFrame(moveRock)
+
+ ROCKS.push(rock)
+
+ return rock;
+  //  let rock=getElementByClassName('rock');
     
     // implement me!
     // (use the comments below to guide you!)
