@@ -52,15 +52,21 @@ function checkCollision(rock) {
 }
 
 function createRock(x) {
+  let game=document.getElementById('game');
   const rock = document.createElement('div')
-
+game.appendChild(rock);
   rock.className = 'rock'
+  //rock.style.left = 100+`px`;
   rock.style.left = `${x}px`
 
   // Hmmm, why would we have used `var` here?
   var top = 0
 
   rock.style.top = top
+  /*rock.style="top:" + (top+22) + "px";
+  setInterval(function() {
+   top.style="top:" + (top+2) + "px";
+}, 100);*/
 
   /**
    * Now that we have a rock, we'll need to append
@@ -73,6 +79,8 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
+    let rock=getElementByClassName('rock');
+    
     // implement me!
     // (use the comments below to guide you!)
     /**
@@ -111,6 +119,17 @@ function endGame() {
 }
 
 function moveDodger(e) {
+  createRock(5);
+  //console.log(e.which);
+  switch(e.which){
+case 37:moveDodgerLeft();
+// requestAnimationFrame(moveDodgerLeft());
+break;
+case 39: moveDodgerRight();
+//requestAnimationFrame(moveDodgerRight());
+break;
+
+  }
   // implement me!
   /**
    * This function should call `moveDodgerLeft()`
@@ -122,6 +141,15 @@ function moveDodger(e) {
 }
 
 function moveDodgerLeft() {
+  var elem = document.getElementById("dodger");
+  //var coords = elem.getBoundingClientRect();
+var left=  parseInt(elem.style.left);
+
+console.log(elem.style.left) ;
+//elem.style.left=(left+10)+'px';
+//console.log(elem.style.left) ;
+elem.style.left=(left-4)+'px'
+//requestAnimationFrame(elem.style.left=(left+4)+'px');
   // implement me!
   /**
    * This function should move DODGER to the left
@@ -130,6 +158,14 @@ function moveDodgerLeft() {
 }
 
 function moveDodgerRight() {
+  var elem = document.getElementById("dodger");
+  //var coords = elem.getBoundingClientRect();
+var right=  parseInt(elem.style.left);
+elem.style.left=(right+4)+'px'
+//console.log(elem.style.left) ;
+//elem.style.left=(left+10)+'px';
+//console.log(elem.style.left) ;
+//requestAnimationFrame(elem.style.left=(right+4)+'px');
   // implement me!
   /**
    * This function should move DODGER to the right
