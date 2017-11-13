@@ -68,7 +68,7 @@ function endGame() {
 
   ROCKS.forEach(function(rock) {rock.remove() })
 
-  document.removeEventListener('keydown', moveDodger);
+  window.removeEventListener('keydown', moveDodger);
 
   START.innerHTML = 'Play again?';
   START.style.display = 'inline';
@@ -115,9 +115,9 @@ function positionToInteger(p) {
 }
 
 function start() {
-  window.addEventListener('keydown', moveDodger)
+  window.addEventListener('keydown', moveDodger);
 
-  START.style.display = 'none'
+  START.style.display = 'none';
 
   gameInterval = setInterval(function() {
     createRock(Math.floor(Math.random() *  (GAME_WIDTH - 20)))
