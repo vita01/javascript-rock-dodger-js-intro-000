@@ -101,7 +101,7 @@ game.appendChild(rock);
 
  return rock;
   //  let rock=getElementByClassName('rock');
-    
+
     // implement me!
     // (use the comments below to guide you!)
     /**
